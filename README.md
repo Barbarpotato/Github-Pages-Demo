@@ -76,3 +76,75 @@ now you can go to Settings -> Pages -> find branch -> change to gh-pages branch 
 # Enjoyed your github pages
 just wait github taking action by deploying your project to github pages by seeing it from actions site from github
 you can also see you page site from Settings -> Pages -> Visit Site
+
+# Add react router dom to github pages
+you need to install react-router-dom to your package then use it as usual in your react project. once you built it there are some several configuration you need to create:
+you need to crate new file named 404.html in your public folder and write code like this:
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>React Router</title>
+    <script type="text/javascript">
+        var pathSegmentsToKeep = 1;
+
+        var l = window.location;
+        l.replace(
+            l.protocol +
+            "//" +
+            l.hostname +
+            (l.port ? ":" + l.port : "") +
+            l.pathname
+                .split("/")
+                .slice(0, 1 + pathSegmentsToKeep)
+                .join("/") +
+            "/?/" +
+            l.pathname.slice(1).split("/").slice(pathSegmentsToKeep).join("/").replace(/&/g, "~and~") +
+            (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+            l.hash
+        );
+    </script>
+</head>
+
+<body></body>
+
+</html>
+```
+
+After that you need to add the script tag inside your `index.html file`:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
+  <script type="text/javascript">
+    (function (l) {
+      if (l.search[1] === "/") {
+        var decoded = l.search
+          .slice(1)
+          .split("&")
+          .map(function (s) {
+            return s.replace(/~and~/g, "&");
+          })
+          .join("?");
+        window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+      }
+    })(window.location);
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
+```
+
+once that you can push your project to github and let github pages take some actions to deploy your project.
