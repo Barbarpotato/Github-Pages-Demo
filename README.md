@@ -79,7 +79,7 @@ you can also see you page site from Settings -> Pages -> Visit Site
 
 # Add react router dom to github pages
 you need to install react-router-dom to your package then use it as usual in your react project. once you built it there are some several configuration you need to create:
-you need to crate new file named 404.html in your public folder and write code like this:
+you need to crate new file named `404.html` in your public folder and write code like this:
 ```html
 <!DOCTYPE html>
 <html>
