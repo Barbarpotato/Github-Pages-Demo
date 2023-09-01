@@ -9,3 +9,14 @@ export const PostData = async (reqBody) => {
     })
     return response.json()
 }
+
+export const SearchSuperheroes = async (name) => {
+    const response = await fetch(`http://localhost:3000/superheroes/?name=${name}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    return response.json()
+}
