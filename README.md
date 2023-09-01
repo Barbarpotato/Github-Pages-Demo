@@ -76,6 +76,3 @@ now you can go to Settings -> Pages -> find branch -> change to gh-pages branch 
 # Enjoyed your github pages
 just wait github taking action by deploying your project to github pages by seeing it from actions site from github
 you can also see you page site from Settings -> Pages -> Visit Site
-
-
-
